@@ -1,0 +1,119 @@
+﻿@using MvcProject.Models;
+@model List<MESSAGE>
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/PatientHome/Index/">Randevu Al</a></li>
+                        <li><a href="/PatientHomeContact/Index/">İletişim</a></li>
+                        <li><a href="/PatientHomeFeedback/Index/">Geri Bildirim</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "PatientLogin", FormMethod.Post))
+                        {
+                            <input type="submit" value="ÇIKIŞ YAP" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <head>
+        <title> Çağrı Hastanesi </title>
+        <style type="text/css">
+            body {
+                background-image: url("bg.jpg");
+                background-size: cover;
+            }
+
+            #metin {
+                text-align: justify;
+                width: 1000px;
+                word-wrap: break-word;
+                margin: 0px auto;
+                background: white;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: #8fc1da;
+                line-height: 200%;
+            }
+        </style>
+    </head>
+
+    <div id="metin">
+        <center>
+            <h1><font style="font-family:Trebuchet MS; font-size:48px; color:#e80729;">İLETİŞİM</font></h1>
+        </center>
+        <font style="font-family:Arial; font-size:18px; color:black;">
+            <br />
+            Mesajını görmek istediğiniz doktorun adını giriniz.
+            <br />
+            <br />
+
+            @using (Html.BeginForm("Index", "PatientHomeContact", FormMethod.Get))
+            {
+                <p>
+                    <center>
+                        <b></b>Doktor Ara @Html.TextBox("p")
+                        <br />
+                        <br />
+                        <input type="submit" class="btn btn-primary" value="Ara" />
+                    </center>
+                </p>
+            }
+            <br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Gönderen ID</th>
+                    <th>Gönderen Adı</th>
+                    <th>Gönderen Soyadı</th>
+                    <th>Alıcı Adı</th>
+                    <th>Alıcı Soyadı</th>
+                    <th>Mesaj İçeriği</th>
+                    <th>Mesaj Tarihi</th>
+                    <th>Mesaj Saati</th>
+                    <th>SİL</th>
+                </tr>
+
+                <tbody>
+                    @foreach (var ptn in Model)
+                    {
+                        <tr>
+                            <td>@ptn.senderID</td>
+                            <td>@ptn.senderName</td>
+                            <td>@ptn.senderSurname</td>
+                            <td>@ptn.receiverName</td>
+                            <td>@ptn.receiverSurname</td>
+                            <td>@ptn.messageContent</td>
+                            <td>@ptn.messageDate</td>
+                            <td>@ptn.messageHour</td>
+                            <td><a href="/PatientHomeContact/DeleteMessage/@ptn.messageID" class="btn btn-danger">SİL</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <center><a href="/PatientHomeContact/AddMessage/" class="btn btn-primary">Mesaj Ekle</a></center>
+        </font>
+    </div>
+</body>
+</html>

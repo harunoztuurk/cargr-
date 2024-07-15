@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/StartPage/Index/">Anasayfa</a></li>
+                        <li><a href="/StartPageDoctorList/Index/">Doktorlar</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/AdminLogin/Index/">Yönetici</a></li>
+                        <li><a href="/DoctorLogin/Index/">Doktor</a></li>
+                        <li><a href="/PatientLogin/Index/">Randevu</a></li>
+                    </ul>
+                </div>
+            </nav>
+       </div>
+    </div>
+   
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adminName" Type="varchar" MaxLength="50" />
+    <Property Name="adminSurname" Type="varchar" MaxLength="50" />
+    <Property Name="adminPassword" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="APPOINTMENT">
+    <Key>
+      <PropertyRef Name="appointmentID" />
+    </Key>
+    <Property Name="appointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doctorID" Type="int" />
+    <Property Name="patientID" Type="int" />
+    <Property Name="department" Type="varchar" MaxLength="50" />
+    <Property Name="doctorName" Type="varchar" MaxLength="50" />
+    <Property Name="doctorSurname" Type="varchar" MaxLength="50" />
+    <Property Name="patientName" Type="varchar" MaxLength="50" />
+    <Property Name="patientSurname" Type="varchar" MaxLength="50" />
+    <Property Name="appointmentDate" Type="date" />
+    <Property Name="appointmentHour" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="DOCTOR">
+    <Key>
+      <PropertyRef Name="doctorID" />
+    </Key>
+    <Property Name="doctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doctorName" Type="varchar" MaxLength="255" />
+    <Property Name="doctorSurname" Type="varchar" MaxLength="255" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="255" />
+    <Property Name="e_mail" Type="varchar" MaxLength="255" />
+    <Property Name="doctorPassword" Type="varchar" MaxLength="255" />
+    <Property Name="department" Type="varchar" MaxLength="255" />
+    <Property Name="biography" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FEEDBACK">
+    <Key>
+      <PropertyRef Name="feedbackID" />
+    </Key>
+    <Property Name="feedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doctorID" Type="int" />
+    <Property Name="patientID" Type="int" />
+    <Property Name="doctorName" Type="varchar" MaxLength="255" />
+    <Property Name="doctorSurname" Type="varchar" MaxLength="255" />
+    <Property Name="patientName" Type="varchar" MaxLength="255" />
+    <Property Name="patientSurname" Type="varchar" MaxLength="255" />
+    <Property Name="feedbackContent" Type="varchar" MaxLength="255" />
+    <Property Name="feedbackDate" Type="date" />
+    <Property Name="feedbackHour" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="MESSAGE">
+    <Key>
+      <PropertyRef Name="messageID" />
+    </Key>
+    <Property Name="messageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="senderID" Type="int" />
+    <Property Name="receiverID" Type="int" />
+    <Property Name="senderName" Type="varchar" MaxLength="255" />
+    <Property Name="senderSurname" Type="varchar" MaxLength="255" />
+    <Property Name="receiverName" Type="varchar" MaxLength="255" />
+    <Property Name="receiverSurname" Type="varchar" MaxLength="255" />
+    <Property Name="messageContent" Type="varchar" MaxLength="255" />
+    <Property Name="messageDate" Type="date" />
+    <Property Name="messageHour" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="PATIENT">
+    <Key>
+      <PropertyRef Name="patientID" />
+    </Key>
+    <Property Name="patientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patientName" Type="varchar" MaxLength="255" />
+    <Property Name="patientSurname" Type="varchar" MaxLength="255" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="255" />
+    <Property Name="e_mail" Type="varchar" MaxLength="255" />
+    <Property Name="patientPassword" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_APPOINTMENT_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="APPOINTMENT" Type="Self.APPOINTMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="doctorID" />
+      </Principal>
+      <Dependent Role="APPOINTMENT">
+        <PropertyRef Name="doctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APPOINTMENT_PATIENT">
+    <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+    <End Role="APPOINTMENT" Type="Self.APPOINTMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PATIENT">
+        <PropertyRef Name="patientID" />
+      </Principal>
+      <Dependent Role="APPOINTMENT">
+        <PropertyRef Name="patientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACK_DOCTOR">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="doctorID" />
+      </Principal>
+      <Dependent Role="FEEDBACK">
+        <PropertyRef Name="doctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FEEDBACK_PATIENT">
+    <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="0..1" />
+    <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PATIENT">
+        <PropertyRef Name="patientID" />
+      </Principal>
+      <Dependent Role="FEEDBACK">
+        <PropertyRef Name="patientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HospitalDBModelStoreContainer">
+    <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="APPOINTMENT" EntityType="Self.APPOINTMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEEDBACK" EntityType="Self.FEEDBACK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PATIENT" EntityType="Self.PATIENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_APPOINTMENT_DOCTOR" Association="Self.FK_APPOINTMENT_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="APPOINTMENT" EntitySet="APPOINTMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APPOINTMENT_PATIENT" Association="Self.FK_APPOINTMENT_PATIENT">
+      <End Role="PATIENT" EntitySet="PATIENT" />
+      <End Role="APPOINTMENT" EntitySet="APPOINTMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACK_DOCTOR" Association="Self.FK_FEEDBACK_DOCTOR">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FEEDBACK_PATIENT" Association="Self.FK_FEEDBACK_PATIENT">
+      <End Role="PATIENT" EntitySet="PATIENT" />
+      <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

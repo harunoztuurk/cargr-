@@ -1,0 +1,60 @@
+﻿@model MvcProject.Models.DOCTOR
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Doktorlar</a></li>
+                        <li><a href="#">Hastalar</a></li>
+                        <li><a href="#">Randevu</a></li>
+                        <li><a href="#">Geri Bildirim</a></li>
+                        <% String var1 = GlobalVariables.MyGlobalVariable; %>
+                        <li><a href="#"><%=var1%></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "AdminLogin", FormMethod.Post))
+                        {
+                            <input type="submit" value="ÇIKIŞ YAP" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    @using (Html.BeginForm("UpdateDoctor", "AdminHome", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.doctorID, "Doktor ID")
+            @Html.TextBoxFor(m => m.doctorID, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.doctorName, "Doktor Adı")
+            @Html.TextBoxFor(m => m.doctorName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.doctorSurname, "Doktor Soyadı")
+            @Html.TextBoxFor(m => m.doctorSurname, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.department, "Bölüm")
+            @Html.TextBoxFor(m => m.department, new { @class = "form-control" })
+        </div>
+        <div>
+            <button class="btn btn-warning">Doktoru Güncelle</button>
+        </div>
+    }
+</body>
+</html>

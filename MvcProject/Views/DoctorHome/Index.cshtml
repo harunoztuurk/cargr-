@@ -1,0 +1,92 @@
+﻿@using MvcProject.Models;
+@model List<DOCTOR>
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/DoctorHome/Index/">Profil</a></li>
+                        <li><a href="#">Randevu</a></li>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="#">Geri Bildirim</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "DoctorLogin", FormMethod.Post))
+                        {
+                            <input type="submit" value="ÇIKIŞ YAP" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <title> Çağrı Hastanesi </title>
+    <style type="text/css">
+        #metin {
+            text-align: justify;
+            width: 1200px;
+            word-wrap: break-word;
+            margin: 0px auto;
+            background: white;
+            padding: 15px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #8fc1da;
+            line-height: 200%;
+        }
+    </style>
+
+    <div id="metin">
+        <center><font style="font-family:Trebuchet MS; font-size:48px; color:#e80729;">DOKTOR PROFİLİ</font></center>
+        <center><img src="~/Images/appointment.jpg"></center>
+        <font style="font-family:Arial; font-size:18px; color:black;">
+        Aşağıdaki tablo, doktorların tüm randevularını listelemektedir. Lütfen sizin için uygun bir zamanda randevu alınız.
+        <br />
+        <br />
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Doktor ID</th>
+                <th>Doktor Adı</th>
+                <th>Doktor Soyadı</th>
+                <th>Doktor Bölümü</th>
+            </tr>
+
+            <tbody>
+                @foreach (var dctr in Model)
+                {
+                    <tr>
+                        <td>@dctr.doctorID</td>
+                        <td>@dctr.doctorName</td>
+                        <td>@dctr.doctorSurname</td>
+                        <td>@dctr.department</td>
+                    </tr>
+
+                    <tr>
+                        <th>Biografi</th>
+                    </tr>
+                    <tr>
+                        <td>@dctr.biography</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+    </div>
+</body>
+</html>

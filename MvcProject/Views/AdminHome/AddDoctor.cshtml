@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Doktorlar</a></li>
+                        <li><a href="#">Hastalar</a></li>
+                        <li><a href="#">Randevu</a></li>
+                        <li><a href="#">Geri Bildirim</a></li>
+                        <% String var1 = GlobalVariables.MyGlobalVariable; %>
+                        <li><a href="#"><%=var1%></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "AdminLogin", FormMethod.Post))
+                        {
+
+                            <input type="submit" value="ÇIKIŞ YAP" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+
+    <center>
+
+        <form class="form-group" method="post">
+            <div>
+                <label>Doktor Adı</label>
+                <input type="text" class="form-control" name="doctorName" />
+            </div>
+            <div>
+                <label>Doktor Soyadı</label>
+                <input type="text" class="form-control" name="doctorSurname" />
+            </div>
+            <div>
+                <label>Telefon Numarası</label>
+                <input type="text" class="form-control" name="phoneNumber" />
+            </div>
+            <div>
+                <label>E-posta</label>
+                <input type="text" class="form-control" name="e_mail" />
+            </div>
+            <div>
+                <label>Doktor Şifresi</label>
+                <input type="text" class="form-control" name="doctorPassword" />
+            </div>
+            <div>
+                <label>Bölüm</label>
+                <input type="text" class="form-control" name="department" />
+            </div>
+            <div>
+                <label>Biografi</label>
+                <input type="text" class="form-control" name="biography" />
+            </div>
+
+            <div style="margin-top:15px">
+                <button class="btn btn-info">DOKTOR EKLE</button>
+            </div>
+
+        </form>
+
+    </center>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿@model MvcProject.Models.PATIENT
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giriş Yap</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorise", "PatientLogin", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline">Hasta Girişi</td>
+                </tr>
+
+                <tr>
+                    <td><br /></td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.patientName, "Hasta Adı")</td>
+                    <td>@Html.EditorFor(model => model.patientName)</td>
+                </tr>
+
+                <tr>
+                    <td><br /></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.patientName)</td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.patientPassword, "Şifre")</td>
+                    <td>@Html.EditorFor(model => model.patientPassword)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.patientPassword)</td>
+                </tr>
+
+                <tr>
+                    <td><br /></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" class="btn btn-success" value="Giriş Yap" />
+                        <input type="reset" class="btn btn-danger" value="Temizle" />
+                        <a href="/PatientLogin/RegisterPatient/" class="btn btn-primary">Kayıt Ol</a>
+                    </td>
+                </tr>
+            </table>
+        }
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</body>
+</html>
+s

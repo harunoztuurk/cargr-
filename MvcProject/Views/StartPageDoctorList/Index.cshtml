@@ -1,0 +1,85 @@
+﻿@using MvcProject.Models;
+@model List<DOCTOR>
+
+<html>
+<head>
+    <title> Çağrı Hastanesi </title>
+    <style type="text/css">
+        #metin {
+            text-align: justify;
+            height: cover;
+            width: 1000px;
+            word-wrap: break-word;
+            margin: 0px auto;
+            background: white;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #8fc1da;
+            line-height: 200%;
+        }
+    </style>
+</head>
+<body>
+    <div id="metin">
+        <br />
+        <br />
+        <br />
+        <center><font style="font-family:Trebuchet MS;font-size:48px;color:#e80729;">DOKTORLAR</font></center>
+        <br>
+        <center><img src="~/Images/doctors.jpg"></center>
+        <br>
+        <font style="font-family:Arial;font-size:18px;color:black;">
+            Aşağıdaki tablo doktorları listelemektedir. İstediğiniz bölümdeki doktoru arama butonundan çağırabilirsiniz.
+        </font>
+        <br />
+        <br />
+        @using (Html.BeginForm("Index", "StartPageDoctorList", FormMethod.Get))
+        {
+            <center>
+                <p>
+                    <b></b>Bölüm Ara @Html.TextBox("p")
+                    <br />
+                    <br />
+                    <input type="submit" class="btn btn-success" value="Ara" />
+                </p>
+            </center>
+        }
+        <br />
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Doktor ID</th>
+                <th>Doktor Adı</th>
+                <th>Doktor Soyadı</th>
+                <th>Doktor Bölümü</th>
+            </tr>
+
+            <tbody>
+                @foreach (var dctr in Model)
+                {
+                    <tr>
+                        <td>@dctr.doctorID</td>
+                        <td>@dctr.doctorName</td>
+                        <td>@dctr.doctorSurname</td>
+                        <td>@dctr.department</td>
+                    </tr>
+
+                    <tr>
+                        <th>Biografi</th>
+                    </tr>
+                    <tr>
+                        <td>@dctr.biography</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<br />
+<br />

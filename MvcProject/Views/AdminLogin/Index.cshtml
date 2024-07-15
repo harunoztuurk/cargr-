@@ -1,0 +1,82 @@
+﻿@model MvcProject.Models.ADMIN
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giriş Yap</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 20px 20px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorise", "AdminLogin", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline">Admin Girişi</td>
+                </tr>
+
+                <tr>
+                    <td><br /></td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.adminName, "Yönetici Adı")</td>
+                    <td>@Html.EditorFor(model => model.adminName)</td>
+                </tr>
+
+                <tr>
+                    <td><br /></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.adminName)</td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.adminPassword, "Şifre")</td>
+                    <td>@Html.EditorFor(model => model.adminPassword)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.adminPassword)</td>
+                </tr>
+
+                <tr>
+                    <td><br /></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input class="btn btn-success" type="submit" value="Giriş Yap" />
+                        <input class="btn btn-danger" type="reset" value="Temizle" />
+                    </td>
+                </tr>
+            </table>
+        }
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</body>
+</html>

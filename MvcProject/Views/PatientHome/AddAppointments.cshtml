@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/PatientHome/Index/">Randevu Al</a></li>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="/PatientHomeFeedback/Index/">Geri Bildirim</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "PatientLogin", FormMethod.Post))
+                        {
+                            <input type="submit" value="ÇIKIŞ YAP" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <center>
+        <font style="font-family:Arial; font-size:18px; color:black;">
+            Lütfen randevu uygunluğunu kontrol etmek için butona tıklayın.
+        </font>
+        <br />
+        <br />
+
+        <a href="/PatientHome/List/" class="btn btn-primary">Doktorları Listele</a>
+        <br />
+        <br />
+        <br />
+        <font style="font-family:Arial; font-size:18px; color:black;">
+            Tarihi yıl-ay-gün formatında giriniz.
+        </font>
+
+        <br />
+        <br />
+        <br />
+
+        <form class="form-group" method="post">
+            <div>
+                <label>Doktor ID</label>
+                <input type="number" class="form-control" name="doctorID" />
+            </div>
+            <div>
+                <label>Hasta ID</label>
+                <input type="number" class="form-control" name="patientID" />
+            </div>
+            <div>
+                <label>Bölüm</label>
+                <input type="text" class="form-control" name="department" />
+            </div>
+            <div>
+                <label>Doktor Adı</label>
+                <input type="text" class="form-control" name="doctorName" />
+            </div>
+            <div>
+                <label>Doktor Soyadı</label>
+                <input type="text" class="form-control" name="doctorSurname" />
+            </div>
+            <div>
+                <label>Hasta Adı</label>
+                <input type="text" class="form-control" name="patientName" />
+            </div>
+            <div>
+                <label>Hasta Soyadı</label>
+                <input type="text" class="form-control" name="patientSurname" />
+            </div>
+            <div>
+                <label>Randevu Tarihi</label>
+                <input type="text" class="form-control" name="appointmentDate" />
+            </div>
+            <div>
+                <label>Randevu Saati</label>
+                <input type="text" class="form-control" name="appointmentHour" />
+            </div>
+
+            <div style="margin-top:15px">
+                <button class="btn btn-info">Randevu Ekle</button>
+            </div>
+        </form>
+        <br />
+        <br />
+    </center>
+
+</body>
+</html>

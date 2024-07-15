@@ -1,0 +1,110 @@
+﻿@using MvcProject.Models;
+@model List<APPOINTMENT>
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">ÇAĞRI HASTANESİ</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/DoctorAppointments/Index/">Randevular</a></li>
+                        <li><a href="/DoctorContact/Index/">İletişim</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <br />
+                        @using (Html.BeginForm("Logout", "DoctorLogin", FormMethod.Post))
+                        {
+                            <input type="submit" value="ÇIKIŞ YAP" />
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <head>
+        <title> Çağrı Hastanesi </title>
+        <style type="text/css">
+            body {
+                background-image: url("bg.jpg");
+                background-size: cover;
+            }
+
+            #metin {
+                text-align: justify;
+                width: 1000px;
+                word-wrap: break-word;
+                margin: 0px auto;
+                background: white;
+                padding: 15px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: #8fc1da;
+                line-height: 200%;
+            }
+        </style>
+    </head>
+
+    <div id="metin">
+        <center>
+            <h1><font style="font-family:Trebuchet MS; font-size:48px; color:#e80729;">RANDEVULAR</font></h1>
+        </center>
+        <font style="font-family:Arial; font-size:18px; color:black;">
+            <br />
+            Randevularınızı görmek için Adınızı ve Soyadınızı giriniz.
+            <br />
+
+            @using (Html.BeginForm("Index", "DoctorAppointments", FormMethod.Get))
+            {
+                <p>
+                    <center>
+                        <b></b>Doktor Adı @Html.TextBox("p")
+                        <b></b>Doktor Soyadı @Html.TextBox("p2")
+                        <br />
+                        <br />
+                        <input type="submit" class="btn btn-primary" value="Ara" />
+                    </center>
+                </p>
+            }
+            <br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Doktor ID</th>
+                    <th>Doktor Adı</th>
+                    <th>Doktor Soyadı</th>
+                    <th>Doktor Bölümü</th>
+                    <th>Randevu Tarihi</th>
+                    <th>Randevu Saati</th>
+                </tr>
+
+                <tbody>
+                    @foreach (var appn in Model)
+                    {
+                        <tr>
+                            <td>@appn.doctorID</td>
+                            <td>@appn.doctorName</td>
+                            <td>@appn.doctorSurname</td>
+                            <td>@appn.department</td>
+                            <td>@appn.appointmentDate</td>
+                            <td>@appn.appointmentHour</td>
+                            <td><a href="/DoctorAppointments/DeleteAppointments/@appn.appointmentID" class="btn btn-danger">SİL</a></td>
+                            <td><a href="/DoctorAppointments/GetApp/@appn.appointmentID" class="btn btn-success">GÜNCELLE</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </font>
+    </div>
+</body>
+</html>
